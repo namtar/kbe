@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<h:head>
+    <h:outputStylesheet library="css" name="todo.css"/>
+    <title>ToDo-Liste</title>
+</h:head>
+
+<body>
+#{todoListMB.testMessage}
+
+<h:form id="form">
+
+    <h:outputText value="Meine ToDo-Liste" class="tableheader"/>
+    <!-- //TODO -->
+    <h:dataTable value="#{todoListMB.toDoList.toDos}" var="todo"
+                 styleClass="table"
+                 headerClass="tableheader"
+                 rowClasses="tableOddRow,tableEvenRow">
+        <h:column>
+            <f:facet name="header">Name</f:facet>
+            #{todo.name}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Done</f:facet>
+            <h:selectBooleanCheckbox value="#{todo.done}"/>
+        </h:column>
+    </h:dataTable>
+    <h:commandButton value="Speichern" type="submit" action="#{todoListMB.save}"/>
+    <br></br>
+    <h:commandLink value="Checklist CommandLink" action="showTime"></h:commandLink>
+</h:form>
+<h:outputText value="Derzeit sind #{todoListMB.toDoList.doneTodos} von #{todoListMB.toDoList.totalNumberOfTodos} erledigt." style="font-weight:bold"/>
+<br></br>
+<h:link value="Checklist Link" outcome="showTime"></h:link>
+
+</body>
+</html>

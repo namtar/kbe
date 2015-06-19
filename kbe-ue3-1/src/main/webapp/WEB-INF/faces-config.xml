@@ -6,10 +6,11 @@
 
     <application>
         <message-bundle>
-            de.htw_berlin.ai_bachelor.kbe.checklist.bundle.messages_de.properties
+            messages_de
         </message-bundle>
         <locale-config>
             <default-locale>de</default-locale>
+            <supported-locale>de</supported-locale>
         </locale-config>
     </application>
 

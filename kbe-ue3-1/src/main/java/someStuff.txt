@@ -1,0 +1,7 @@
+ <h:inputText value="#{todo.dueDate}" rendered="#{todo.editable}">
+                 <f:convertDateTime pattern="dd.MM.yyyy"/>
+             </h:inputText>
+
+ <h:outputText value="#{todo.dueDate}" rendered="#{not todo.editable}">
+                <f:convertDateTime type="date" pattern="dd.MM.yyyy"></f:convertDateTime>
+            </h:outputText>

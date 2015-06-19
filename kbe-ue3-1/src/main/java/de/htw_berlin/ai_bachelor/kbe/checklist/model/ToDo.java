@@ -1,6 +1,7 @@
 package de.htw_berlin.ai_bachelor.kbe.checklist.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Class that represents one todo entry
@@ -13,15 +14,22 @@ public class ToDo implements Serializable {
 
 	private String name;
 	private boolean done = false;
+	private Date dueDate;
+	private boolean editable;
 
-	private ToDo(String name, boolean done) {
+	private ToDo(String name, boolean done, Date dueDate) {
 		super();
 		this.name = name;
 		this.done = done;
+		this.dueDate = dueDate;
+	}
+
+	public ToDo(String name, Date dueDate) {
+		this(name, false, dueDate);
 	}
 
 	public ToDo(String name) {
-		this(name, false);
+		this(name, false, null);
 	}
 
 	public boolean isDone() {
@@ -40,11 +48,28 @@ public class ToDo implements Serializable {
 		this.name = name;
 	}
 
+	public Date getDueDate() {
+		return dueDate;
+	}
+
+	public void setDueDate(Date dueDate) {
+		this.dueDate = dueDate;
+	}
+
+	public boolean isEditable() {
+		return editable;
+	}
+
+	public void setEditable(boolean editable) {
+		this.editable = editable;
+	}
+
 	@Override
 	public String toString() {
 		return "ToDo{" +
 				"name='" + name + '\'' +
 				", done=" + done +
+				", dueDate=" + dueDate +
 				'}';
 	}
 }

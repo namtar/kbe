@@ -24,10 +24,14 @@
             <from-outcome>success</from-outcome>
             <to-view-id>/editToDoList.xhtml</to-view-id>
         </navigation-case>
-        <!--<navigation-case>-->
-            <!--<from-outcome>cancel</from-outcome>-->
-            <!--<to-view-id>/editToDoList.xhtml</to-view-id>-->
-        <!--</navigation-case>-->
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/editInterval.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{editIntervalMB.save}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/editToDoList.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 
     <lifecycle>

@@ -5,3 +5,6 @@
  <h:outputText value="#{todo.dueDate}" rendered="#{not todo.editable}">
                 <f:convertDateTime type="date" pattern="dd.MM.yyyy"></f:convertDateTime>
             </h:outputText>
+
+
+            <h:messages errorStyle="color: red;"></h:messages>

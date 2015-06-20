@@ -1,7 +1,8 @@
 package de.htw_berlin.ai_bachelor.kbe.checklist.model;
 
-import de.htw_berlin.ai_bachelor.kbe.checklist.validator.FutureDate;
+import de.htw_berlin.ai_bachelor.kbe.checklist.validator.MyInterval;
 
+import javax.validation.constraints.Future;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -17,9 +18,11 @@ public class ToDo implements Serializable {
 	private String name;
 	private boolean done = false;
 
-	@FutureDate
+	@Future
 	private Date dueDate;
 	private boolean editable;
+	@MyInterval
+	private Integer priority = 1;
 
 	private ToDo(String name, boolean done, Date dueDate) {
 		super();
@@ -68,12 +71,22 @@ public class ToDo implements Serializable {
 		this.editable = editable;
 	}
 
+	public Integer getPriority() {
+		return priority;
+	}
+
+	public void setPriority(Integer priority) {
+		this.priority = priority;
+	}
+
 	@Override
 	public String toString() {
 		return "ToDo{" +
 				"name='" + name + '\'' +
 				", done=" + done +
 				", dueDate=" + dueDate +
+				", editable=" + editable +
+				", priority=" + priority +
 				'}';
 	}
 }

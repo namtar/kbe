@@ -14,7 +14,7 @@ import java.util.Date;
  */
 public class FutureDateValidator implements ConstraintValidator<FutureDate, Date> {
 
-	FutureDate futureDate;
+	private FutureDate futureDate;
 
 	@Override
 	public void initialize(FutureDate futureDate) {

@@ -13,7 +13,9 @@ import javax.faces.component.UIViewRoot;
 import javax.faces.component.html.HtmlInputText;
 import javax.faces.context.FacesContext;
 
-//TODO
+/**
+ * @See: https://mobiarch.wordpress.com/2013/07/18/user-friendly-validation-error-message-in-jsf-2/
+ */
 @ManagedBean(name = "todoListMB")
 @SessionScoped
 public class ToDoListMB implements Serializable {

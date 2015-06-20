@@ -1,5 +1,7 @@
 package de.htw_berlin.ai_bachelor.kbe.checklist.model;
 
+import de.htw_berlin.ai_bachelor.kbe.checklist.validator.FutureDate;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -14,6 +16,8 @@ public class ToDo implements Serializable {
 
 	private String name;
 	private boolean done = false;
+
+	@FutureDate
 	private Date dueDate;
 	private boolean editable;
 

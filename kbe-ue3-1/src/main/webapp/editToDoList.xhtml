@@ -39,6 +39,7 @@
         </h:column>
     </h:dataTable>
     <h:commandButton value="Speichern" type="submit" action="#{todoListMB.save}"/>
+    <h:commandButton value="Cancel" type="submit" action="#{todoListMB.reset('form')}" immediate="true"/>
     <br></br>
     <h:commandLink value="Checklist CommandLink" action="showTime"></h:commandLink>
 </h:form>

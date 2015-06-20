@@ -7,6 +7,11 @@ import de.htw_berlin.ai_bachelor.kbe.checklist.model.ToDoList;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
+import javax.faces.component.UIViewRoot;
+import javax.faces.component.html.HtmlInputText;
+import javax.faces.context.FacesContext;
 
 //TODO
 @ManagedBean(name = "todoListMB")
@@ -44,5 +49,20 @@ public class ToDoListMB implements Serializable {
 		// durch den Form POST wird offensichtlich der State an sich schon submitted. Das heißt, wir können zur Persistierung in der DB einfach auf die Todolist
 		// zugreifen und Spass haben.
 		return "save";
+	}
+
+	public String reset(final String componentId) {
+		// http://javaevangelist.blogspot.de/2013/08/jsf-tip-of-day-how-do-i-reset-input.html
+		UIViewRoot viewRoot = FacesContext.getCurrentInstance().getViewRoot();
+		UIComponent component = viewRoot.findComponent(componentId);
+		if (component != null) {
+
+			for (UIComponent child : component.getChildren()) {
+				if (child instanceof UIInput) {
+					((UIInput) child).resetValue();
+				}
+			}
+		}
+		return null;
 	}
 }

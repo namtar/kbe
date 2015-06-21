@@ -3,6 +3,8 @@ package de.htw_berlin.ai_bachelor.kbe.checklist.validator;
 import de.htw_berlin.ai_bachelor.kbe.checklist.mb.EditIntervalMB;
 
 import javax.el.ELContext;
+import javax.el.ExpressionFactory;
+import javax.el.ValueExpression;
 import javax.faces.context.FacesContext;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -27,9 +29,15 @@ public class IntervalValidator implements ConstraintValidator<MyInterval, Intege
 
 			// http://stackoverflow.com/questions/2633112/get-jsf-managed-bean-by-name-in-any-servlet-related-class
 
+			ExpressionFactory expressionFactory = FacesContext.getCurrentInstance().getApplication().getExpressionFactory();
 			ELContext elContext = FacesContext.getCurrentInstance().getELContext();
-			Object bean = elContext.getELResolver().getValue(elContext, null, "upperIntervalBorder");
-			System.out.println(elContext);
+			ValueExpression expression = expressionFactory.createValueExpression(elContext, "#{editIntervalMB.upperIntervalBorder}", Integer.class);
+			Integer value = (Integer) expression.getValue(elContext);
+			//			System.out.println(expression);
+			//			System.out.println(value);
+			if (integer < 1 || integer > value) {
+				return false;
+			}
 		}
 		return true;
 	}

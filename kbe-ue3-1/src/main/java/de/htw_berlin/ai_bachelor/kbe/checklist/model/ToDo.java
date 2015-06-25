@@ -3,6 +3,7 @@ package de.htw_berlin.ai_bachelor.kbe.checklist.model;
 import de.htw_berlin.ai_bachelor.kbe.checklist.validator.MyInterval;
 
 import javax.validation.constraints.Future;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -19,6 +20,7 @@ public class ToDo implements Serializable {
 	private boolean done = false;
 
 	@Future(message = "{de.htw_berlin.ai_bachelor.kbe.checklist.no_future_date}")
+	@NotNull
 	private Date dueDate;
 	private boolean editable;
 	@MyInterval

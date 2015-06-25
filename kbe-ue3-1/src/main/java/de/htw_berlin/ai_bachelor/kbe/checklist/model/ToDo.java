@@ -18,7 +18,7 @@ public class ToDo implements Serializable {
 	private String name;
 	private boolean done = false;
 
-	@Future
+	@Future(message = "{de.htw_berlin.ai_bachelor.kbe.checklist.no_future_date}")
 	private Date dueDate;
 	private boolean editable;
 	@MyInterval

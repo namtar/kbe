@@ -33,8 +33,8 @@ public class IntervalValidator implements ConstraintValidator<MyInterval, Intege
 			ELContext elContext = FacesContext.getCurrentInstance().getELContext();
 			ValueExpression expression = expressionFactory.createValueExpression(elContext, "#{editIntervalMB.upperIntervalBorder}", Integer.class);
 			Integer value = (Integer) expression.getValue(elContext);
-			//			System.out.println(expression);
-			//			System.out.println(value);
+//						System.out.println(expression);
+//						System.out.println(value);
 			if (integer < 1 || integer > value) {
 				return false;
 			}

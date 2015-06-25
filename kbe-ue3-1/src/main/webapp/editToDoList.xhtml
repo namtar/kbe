@@ -23,6 +23,7 @@
             <h:inputText id="priorityInput" value="#{todo.priority}">
                 <f:validateLongRange minimum="1" maximum="#{editIntervalMB.upperIntervalBorder}"></f:validateLongRange>
             </h:inputText>
+            <h:message for="priorityInput" style="color:red"/>
         </h:column>
         <h:column>
             <f:facet name="header">Name</f:facet>
@@ -41,7 +42,6 @@
         <h:column>
             <f:facet name="header">Error</f:facet>
             <h:message for="dateInput"></h:message>
-            <h:message for="priorityInput" style="color:red"/>
         </h:column>
     </h:dataTable>
     <h:commandButton value="Speichern" type="submit" action="#{todoListMB.save}"/>

@@ -1,6 +1,7 @@
 package de.htw_berlin.ai_bachelor.kbe.checklist.mb;
 
 import java.io.Serializable;
+import java.util.Locale;
 
 import de.htw_berlin.ai_bachelor.kbe.checklist.model.ToDo;
 import de.htw_berlin.ai_bachelor.kbe.checklist.model.ToDoList;
@@ -27,6 +28,7 @@ public class ToDoListMB implements Serializable {
 
 	public ToDoListMB() {
 		super();
+		FacesContext.getCurrentInstance().getViewRoot().setLocale(Locale.GERMAN);
 
 		this.toDoList = new ToDoList();
 	}

@@ -7,4 +7,9 @@
             </h:outputText>
 
 
-            <h:messages errorStyle="color: red;"></h:messages>
+<h:messages errorStyle="color: red;"></h:messages>
+
+<h:message for="dateInput"></h:message>
+<h:message for="priorityInput" style="color:red"/>
+
+<f:validateLongRange minimum="1" maximum="#{editIntervalMB.upperIntervalBorder}"></f:validateLongRange>

@@ -1,23 +1,24 @@
 package de.htw_berlin.ai_bachelor.kbe.checklist.mb;
 
-import java.io.Serializable;
-import java.util.Locale;
-
+import de.htw_berlin.ai_bachelor.kbe.checklist.data.ToDoFacade;
 import de.htw_berlin.ai_bachelor.kbe.checklist.model.ToDo;
 import de.htw_berlin.ai_bachelor.kbe.checklist.model.ToDoList;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.annotation.PostConstruct;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
 import javax.faces.component.UIViewRoot;
-import javax.faces.component.html.HtmlInputText;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
+import javax.inject.Named;
+import java.io.Serializable;
+import java.util.Locale;
 
 /**
  * @See: https://mobiarch.wordpress.com/2013/07/18/user-friendly-validation-error-message-in-jsf-2/
  */
-@ManagedBean(name = "todoListMB")
+@Named("todoListMB")
 @SessionScoped
 public class ToDoListMB implements Serializable {
 
@@ -26,14 +27,27 @@ public class ToDoListMB implements Serializable {
 	private ToDoList toDoList;
 	private String testMessage = "Dies ist ein Test";
 
+	@Inject
+	private ToDoFacade toDoFacade;
+
 	public ToDoListMB() {
 		super();
 		FacesContext.getCurrentInstance().getViewRoot().setLocale(Locale.GERMAN);
-
 		this.toDoList = new ToDoList();
 	}
 
+	@PostConstruct
+	private void afterCreation() {
+		// persist all initial created todos to database for more fun.
+		for (ToDo toDo : toDoList.getToDos()) {
+			toDoFacade.save(toDo);
+		}
+	}
+
 	public ToDoList getToDoList() {
+		// hacky... only for practice.....
+		this.toDoList.getToDos().clear();
+		this.toDoList.getToDos().addAll(toDoFacade.getAllTodos());
 		return toDoList;
 	}
 
@@ -52,6 +66,10 @@ public class ToDoListMB implements Serializable {
 
 		// durch den Form POST wird offensichtlich der State an sich schon submitted. Das heißt, wir können zur Persistierung in der DB einfach auf die Todolist
 		// zugreifen und Spass haben.
+		for(ToDo toDo : toDoList.getToDos()) {
+			toDoFacade.update(toDo);
+		}
+
 		return "save";
 	}
 
@@ -67,6 +85,6 @@ public class ToDoListMB implements Serializable {
 				}
 			}
 		}
-		return null;
+		return "cancel";
 	}
 }

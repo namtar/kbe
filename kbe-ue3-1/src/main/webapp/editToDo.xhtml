@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <h:form id="editToDoForm">
+        <h:panelGroup layout="block" styleClass="panelGroup1">
+            <h:outputLabel for="todoName">Todo Name:</h:outputLabel>
+            <h:inputText id="todoName" value="#{newTodoMB.toDo.name}"></h:inputText>
+        </h:panelGroup>
+        <h:panelGroup layout="block" styleClass="panelGroup1">
+            <h:outputLabel for="dueDate">Fälligkeitsdatum:</h:outputLabel>
+            <h:inputText id="dueDate" value="#{newTodoMB.toDo.dueDate}">
+                <f:convertDateTime pattern="dd.MM.yyyy" type="date"/>
+            </h:inputText>
+        </h:panelGroup>
+        <h:panelGroup layout="block" styleClass="panelGroup1">
+            <h:outputLabel for="priority">Priorität:</h:outputLabel>
+            <h:inputText id="priority" value="#{newTodoMB.toDo.priority}"></h:inputText>
+        </h:panelGroup>
+        <h:commandButton value="Speichern" type="submit" action="#{newTodoMB.save}">
+
+        </h:commandButton>
+        <h:commandButton value="Cancel" type="submit" action="#{todoListMB.reset('editToDoForm')}" immediate="true"/>
+    </h:form>
+</f:view>
+</html>

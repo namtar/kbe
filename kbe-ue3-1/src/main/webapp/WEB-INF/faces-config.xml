@@ -21,7 +21,7 @@
         <from-view-id>/editToDoList.xhtml</from-view-id>
         <navigation-case>
             <from-action>#{todoListMB.save}</from-action>
-            <from-outcome>success</from-outcome>
+            <from-outcome>save</from-outcome>
             <to-view-id>/editToDoList.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
@@ -29,6 +29,18 @@
         <from-view-id>/editInterval.xhtml</from-view-id>
         <navigation-case>
             <from-action>#{editIntervalMB.save}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/editToDoList.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/editToDo.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>cancel</from-outcome>
+            <to-view-id>/editToDoList.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{newTodoMB.save}</from-action>
             <from-outcome>success</from-outcome>
             <to-view-id>/editToDoList.xhtml</to-view-id>
         </navigation-case>

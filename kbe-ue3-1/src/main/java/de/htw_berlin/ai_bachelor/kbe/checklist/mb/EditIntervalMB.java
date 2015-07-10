@@ -1,14 +1,14 @@
 package de.htw_berlin.ai_bachelor.kbe.checklist.mb;
 
-import javax.faces.bean.ApplicationScoped;
-import javax.faces.bean.ManagedBean;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Named;
 import javax.validation.constraints.Min;
 import java.io.Serializable;
 
 /**
  * Created by drummer on 20.06.2015.
  */
-@ManagedBean(name = "editIntervalMB")
+@Named("editIntervalMB")
 @ApplicationScoped
 public class EditIntervalMB implements Serializable {
 

@@ -2,6 +2,7 @@ package de.htw_berlin.ai_bachelor.kbe.checklist.model;
 
 import de.htw_berlin.ai_bachelor.kbe.checklist.validator.MyInterval;
 
+import javax.persistence.*;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -12,19 +13,24 @@ import java.util.Date;
  *
  * @author Matthias Drummer
  */
+@Entity
+@Access(AccessType.PROPERTY)
+@Table(name = "todo")
 public class ToDo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	private Integer id;
+
 	private String name;
 	private boolean done = false;
 
-	@Future(message = "{de.htw_berlin.ai_bachelor.kbe.checklist.no_future_date}")
-	@NotNull
 	private Date dueDate;
-	private boolean editable;
-	@MyInterval
+
 	private Integer priority = 1;
+
+	public ToDo() {
+	}
 
 	private ToDo(String name, boolean done, Date dueDate) {
 		super();
@@ -41,6 +47,18 @@ public class ToDo implements Serializable {
 		this(name, false, null);
 	}
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
+	public Integer getId() {
+		return id;
+	}
+
+	protected void setId(Integer id) {
+		this.id = id;
+	}
+
+	@Column(name = "done")
 	public boolean isDone() {
 		return done;
 	}
@@ -49,6 +67,7 @@ public class ToDo implements Serializable {
 		this.done = done;
 	}
 
+	@Column(name = "name")
 	public String getName() {
 		return name;
 	}
@@ -57,6 +76,9 @@ public class ToDo implements Serializable {
 		this.name = name;
 	}
 
+	@Column(name = "dueDate")
+	@NotNull
+	@Future(message = "{de.htw_berlin.ai_bachelor.kbe.checklist.no_future_date}")
 	public Date getDueDate() {
 		return dueDate;
 	}
@@ -65,14 +87,8 @@ public class ToDo implements Serializable {
 		this.dueDate = dueDate;
 	}
 
-	public boolean isEditable() {
-		return editable;
-	}
-
-	public void setEditable(boolean editable) {
-		this.editable = editable;
-	}
-
+	@Column(name = "priority", columnDefinition = "int default 1")
+	@MyInterval
 	public Integer getPriority() {
 		return priority;
 	}
@@ -82,12 +98,43 @@ public class ToDo implements Serializable {
 	}
 
 	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+
+		ToDo toDo = (ToDo) o;
+
+		if (done != toDo.done)
+			return false;
+		if (id != null ? !id.equals(toDo.id) : toDo.id != null)
+			return false;
+		if (name != null ? !name.equals(toDo.name) : toDo.name != null)
+			return false;
+		if (dueDate != null ? !dueDate.equals(toDo.dueDate) : toDo.dueDate != null)
+			return false;
+		return !(priority != null ? !priority.equals(toDo.priority) : toDo.priority != null);
+
+	}
+
+	@Override
+	public int hashCode() {
+		int result = id != null ? id.hashCode() : 0;
+		result = 31 * result + (name != null ? name.hashCode() : 0);
+		result = 31 * result + (done ? 1 : 0);
+		result = 31 * result + (dueDate != null ? dueDate.hashCode() : 0);
+		result = 31 * result + (priority != null ? priority.hashCode() : 0);
+		return result;
+	}
+
+	@Override
 	public String toString() {
 		return "ToDo{" +
-				"name='" + name + '\'' +
+				"id=" + id +
+				", name='" + name + '\'' +
 				", done=" + done +
 				", dueDate=" + dueDate +
-				", editable=" + editable +
 				", priority=" + priority +
 				'}';
 	}

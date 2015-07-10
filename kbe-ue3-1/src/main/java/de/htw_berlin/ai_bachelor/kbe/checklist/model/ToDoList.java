@@ -2,6 +2,7 @@ package de.htw_berlin.ai_bachelor.kbe.checklist.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -21,12 +22,16 @@ public class ToDoList implements Serializable {
 	}
 
 	private void setToDos() {
-		toDos.add(new ToDo("KBE: Aufgabenzettel 2 bearbeiten", new Date()));
-		toDos.add(new ToDo("KBE: Zweite Vorlesung nacharbeiten", new Date()));
-		toDos.add(new ToDo("Lebensmittel einkaufen ", new Date()));
-		toDos.add(new ToDo("Leergut wegbringen", new Date()));
-		toDos.add(new ToDo("Geburtstagsgeschenk besorgen", new Date()));
-		toDos.add(new ToDo("Putzen", new Date()));
+
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.DAY_OF_MONTH, 1);
+
+		toDos.add(new ToDo("KBE: Aufgabenzettel 2 bearbeiten", cal.getTime()));
+		toDos.add(new ToDo("KBE: Zweite Vorlesung nacharbeiten", cal.getTime()));
+		toDos.add(new ToDo("Lebensmittel einkaufen ", cal.getTime()));
+		toDos.add(new ToDo("Leergut wegbringen", cal.getTime()));
+		toDos.add(new ToDo("Geburtstagsgeschenk besorgen", cal.getTime()));
+		toDos.add(new ToDo("Putzen", cal.getTime()));
 	}
 
 	public Integer getDoneTodos() {

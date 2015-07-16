@@ -26,6 +26,8 @@ public class ToDoList implements Serializable {
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.DAY_OF_MONTH, 1);
 
+		System.out.println(cal.getTime());
+
 		toDos.add(new ToDo("KBE: Aufgabenzettel 2 bearbeiten", cal.getTime()));
 		toDos.add(new ToDo("KBE: Zweite Vorlesung nacharbeiten", cal.getTime()));
 		toDos.add(new ToDo("Lebensmittel einkaufen ", cal.getTime()));

@@ -35,16 +35,17 @@ public class ToDoDAO extends GenericDAO<ToDo> {
 		// merge would also be possible i think.
 
 		beginTransaction();
-		ToDo fromDatabase = find(toDo.getId());
-
-		fromDatabase.setPriority(toDo.getPriority());
-		fromDatabase.setDone(toDo.isDone());
-		fromDatabase.setDueDate(toDo.getDueDate());
-		fromDatabase.setName(toDo.getName());
+//		ToDo fromDatabase = find(toDo.getId());
+//
+//		fromDatabase.setPriority(toDo.getPriority());
+//		fromDatabase.setDone(toDo.isDone());
+//		fromDatabase.setDueDate(toDo.getDueDate());
+//		fromDatabase.setName(toDo.getName());
+		super.update(toDo);
 
 		commit();
 
-		return fromDatabase;
+		return toDo;
 	}
 
 	public List<ToDo> getAllTodos() {

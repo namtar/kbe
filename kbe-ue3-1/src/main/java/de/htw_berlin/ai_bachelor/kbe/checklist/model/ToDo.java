@@ -77,6 +77,7 @@ public class ToDo implements Serializable {
 	}
 
 	@Column(name = "dueDate")
+	@Temporal(TemporalType.DATE)
 	@NotNull
 	@Future(message = "{de.htw_berlin.ai_bachelor.kbe.checklist.no_future_date}")
 	public Date getDueDate() {
